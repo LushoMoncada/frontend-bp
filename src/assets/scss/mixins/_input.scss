@@ -1,0 +1,11 @@
+@mixin create-input() {
+  border-radius: 0.25rem;
+  border: 1px solid map-get($gray-sacale , '400');
+  padding: 0.5rem;
+  transition: 0.25s border ease-in;
+  outline: none;
+
+  &:focus {
+    border: 1px solid map-get($palette , 'secondary');
+  }
+}

@@ -1,0 +1,20 @@
+$gray-sacale: (
+  '100': #f9fafc,
+  '200': #f4f6f9,
+  '300': #e9ecf2,
+  '400': #d8d9db,
+  '500': #929296,
+  '600': #6e6e73,
+);
+
+$palette: (
+  'white': #ffffff,
+  'primary': #f9de4b,
+  'secondary': #17275b,
+  'error': #e46060,
+  'black': #000000
+);
+
+$white: map-get($palette , 'white');
+$black: map-get($palette , 'black');
+$background: map-get($gray-sacale, '200')

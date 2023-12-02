@@ -1,0 +1,38 @@
+@mixin create-button($type: 'primary') {
+  border: none;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  color: map-get($palette, 'secondary');
+  cursor: pointer;
+  transition: 0.25s all ease;
+
+  &[disabled] {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  @if $type =='primary' {
+    background-color: map-get($palette, 'primary');
+
+    &:hover {
+      background-color: darken(map-get($palette , 'primary'), 10%);
+    }
+
+    &:focus {
+      background-color: lighten(map-get($palette , 'primary'), 10%);
+    }
+  }
+
+  @else if $type =='secondary' {
+    background-color: map-get($gray-sacale , '400');
+
+    &:hover {
+      background-color: darken(map-get($gray-sacale , '400'), 5%);
+    }
+
+    &:focus {
+      background-color: lighten(map-get($gray-sacale , '400'), 5%);
+    }
+  }
+}

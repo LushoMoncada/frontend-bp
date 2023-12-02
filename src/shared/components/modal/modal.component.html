@@ -1,0 +1,14 @@
+<div class="modal-overlay" (click)="closeModal()">
+  <div class="modal-container" (click)="preventClosing($event)">
+    <div class="modal-body">
+      <p>¿Estas seguro de eliminar el producto {{ data?.name }}?</p>
+
+      <div class="btn-group">
+        <button class="btn-cancel" (click)="closeModal()">Cancelar</button>
+        <button class="btn-accept" (click)="onDeleteProduct(data?.id)">
+          Confirmar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

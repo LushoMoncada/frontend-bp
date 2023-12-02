@@ -1,0 +1,82 @@
+@import '../../../assets/scss/base';
+
+:host {
+  display: block;
+}
+
+.card {
+  margin: 0 5rem;
+  background: $white;
+
+  .card-header {
+    padding-top: 2rem;
+    border-bottom: 1px solid $black;
+
+    h1 {
+      text-align: center;
+      margin: 0 0 1rem 0;
+    }
+  }
+
+  .wrapper {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    padding: 2rem;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+
+    .btn-send {
+      @include create-button();
+
+      width: 6rem;
+    }
+
+    .btn-reset {
+      @include create-button('secondary');
+
+      width: 6rem;
+    }
+  }
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+  position: relative;
+
+
+  label {
+    margin-bottom: 0.25rem;
+    font-size: 12px;
+    font-weight: bold
+  }
+
+  .input {
+    @include create-input();
+  }
+
+  &.has-error {
+    label {
+      color: map-get($palette , 'error');
+    }
+
+    .input {
+      border-color: map-get($palette , 'error');
+    }
+
+    .error {
+      margin-top: 0.25rem;
+      font-size: 12px;
+      position: absolute;
+      bottom: -1rem;
+      color: map-get($palette , 'error');
+    }
+  }
+}

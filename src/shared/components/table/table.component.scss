@@ -1,0 +1,146 @@
+@import '../../../assets/scss/base';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
+  padding: 2rem;
+  border-radius: 0.25rem;
+  overflow: auto;
+}
+
+.wrapper {
+  overflow: auto;
+  min-height: 40rem;
+
+}
+
+.table {
+  border-collapse: collapse;
+
+  .table-header {
+    background-color: map-get($gray-sacale , '100');
+    font-weight: bold;
+  }
+
+  tr {
+    justify-content: space-around;
+    border-bottom: 3px solid map-get($gray-sacale , '300');
+
+    th,
+    td {
+      padding: 1.5rem;
+
+      &:first-child {
+        padding-left: 5rem;
+      }
+
+      &:last-child {
+        padding-right: 5rem;
+      }
+    }
+  }
+
+  .table-body {
+    .table-img {
+      max-width: 4rem;
+      min-width: 4rem;
+      object-fit: contain;
+    }
+  }
+}
+
+.table-footer {
+  display: flex;
+  margin-top: 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+
+  .btn-pagination {
+    @include create-button('secondary');
+
+    margin-right: 0.5rem;
+
+    &:last-child {
+      margin: 0
+    }
+
+    &.active {
+      @include create-button();
+    }
+  }
+
+  .page-size {
+    @include create-input();
+
+    width: 4.5rem;
+    text-align: center;
+  }
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  &:hover {
+    .dropdown-content {
+      display: block;
+    }
+  }
+
+  .svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: map-get($gray-sacale , '100');
+    min-width: 8rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+  button {
+    color: map-get($palette, 'secondary');
+    padding: 1rem;
+    display: block;
+    border: none;
+    width: 100%;
+  }
+}
+
+.options {
+  display: flex;
+  margin-bottom: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-add {
+  @include create-button();
+
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0
+}
+
+.search {
+  @include create-input();
+
+  width: 100%;
+}
+
+
+@include media-breakpoint-up('md') {
+  .btn-add {
+    width: inherit;
+    position: relative;
+  }
+
+  .search {
+    width: 12rem;
+  }
+}

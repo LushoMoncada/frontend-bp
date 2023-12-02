@@ -1,0 +1,83 @@
+<div class="options">
+  <input
+    class="search"
+    type="search"
+    placeholder="Search"
+    [(ngModel)]="search"
+    (input)="onSearch()"
+  />
+  <button class="btn-add" [routerLink]="'/form'">Agregar</button>
+</div>
+
+<div class="wrapper">
+  <table class="table">
+    <thead class="table-header">
+      <tr>
+        <td *ngFor="let header of tableHeaders">{{ header?.name }}</td>
+        <td>Acciones</td>
+      </tr>
+    </thead>
+
+    <tbody class="table-body">
+      <tr *ngFor="let row of tableData?.slice(startIndex, endIndex + 1)">
+        <td *ngFor="let header of tableHeaders">
+          <ng-container *ngIf="header?.type === 'image'">
+            <img class="table-img" [src]="row[header.key]" alt="logo" />
+          </ng-container>
+
+          <ng-container *ngIf="isDate(row[header.key])">
+            {{ row[header.key] | date : "dd/MM/YYYY" }}
+          </ng-container>
+
+          <ng-container
+            *ngIf="header.type !== 'image' && !isDate(row[header.key])"
+          >
+            {{ row[header.key] }}
+          </ng-container>
+        </td>
+        <td>
+          <div class="dropdown">
+            <div class="svg" [innerHTML]="trustedSvgContent"></div>
+            <div class="dropdown-content">
+              <button (click)="onEditProduct(row)">Editar</button>
+              <button (click)="openModal(row)">Eliminar</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="table-footer">
+  <span> {{ tableData.length }} Resultados</span>
+
+  <div class="pagination">
+    <button
+      *ngFor="let page of pages"
+      (click)="setCurrentPage(page)"
+      [class.active]="page === currentPage"
+      class="btn-pagination"
+      type="button"
+    >
+      {{ page }}
+    </button>
+  </div>
+
+  <select
+    class="page-size"
+    [(ngModel)]="pageSize"
+    (change)="onPageSizeChange(pageSize)"
+  >
+    <option *ngFor="let option of pageSizeOptions" [value]="option">
+      {{ option }}
+    </option>
+  </select>
+</div>
+
+<app-modal
+  *ngIf="isModalOpen"
+  (closeModalEvent)="closeModal()"
+  (deleteData)="loadTableData()"
+  [data]="selectedRow"
+></app-modal>
